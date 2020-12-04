@@ -1,2 +1,17 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div class="container">
+  <div class="brand-titile">
+    <h1 id="brand-title">AMS</br>Company</h1>
+  </div>
+  <div class="notice">
+    <p>事前に告知されたEmailとパスワードを入力してください</p>
+  </div>
+  <%= form_tag("/login") do %>
+    <div class="form">
+      <p>Email</p>
+      <input name="email" value=""></br></br>
+      <p>PASSWORD</p>
+      <input name="password" type="password" value=""></br></br>
+      <input type="submit" value="LOGIN">
+    </div>
+  <% end %>
+</div>
