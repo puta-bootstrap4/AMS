@@ -1,4 +1,18 @@
-<table class="table" border="3">
-  <tr>2021年1月</tr>
-  <tr><td>あ</td></tr>
-</table>
+<div class="container text-center table-responsive">
+  <table class="table" border="1">
+  <tr><td colspan="32">2021年1月</td></tr>
+  <tr>
+    <td rowspan="2"><%=@user.username%></td>
+    <% for num in 1..31 do%>
+      <td><%=num%></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>金</td><td>土</td><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td>
+    <td>金</td><td>土</td><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td>
+    <td>金</td><td>土</td><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td>
+    <td>金</td><td>土</td><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td>
+    <td>金</td><td>土</td><td>日</td>
+  </tr>
+  </table>
+</div>
