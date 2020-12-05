@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find_by(id: params[:id])
   end
 
   def login
@@ -26,4 +26,23 @@ class UsersController < ApplicationController
     redirect_to("/")
   end
 
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(email: params[:email],password: params[:password],username: params[:username])
+    if @user.save
+      flash[:notice]="新規従業員の登録が完了しました"
+      redirect_to("/users/index")
+    else
+      flash[:notice]="新規従業員の登録に失敗しました"
+      render("users/index")
+    end
+  end
 end

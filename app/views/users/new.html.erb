@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <%= form_tag("/users/create") do %>
+  <p>新規従業員名を入力してください</p>
+  <input name="username" value="<%=@user.username%>"></br></br>
+  <p>新規従業員のメールアドレスを入力してください</p>
+  <input name="email" value="<%=@user.email%>"></br></br>
+  <p>新規従業員の初期パスワードを入力してください</p>
+  <input name="password"value="<%=@user.password%>" type="password"></br></br>
+  <input type="submit" value="登録">
+  <% end %>
+</div>

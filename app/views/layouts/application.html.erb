@@ -19,6 +19,9 @@
         <% if @current_user %>
           <%=link_to("/logout",{method: "post"}) do %><button type="button" class="btn btn-light float-right">ログアウト</button><% end %>
         <% end %>
+        <% if @current_user &&  @current_user.admin? %>
+          <%=link_to("/users/new",{method: "post"}) do %><button type="button" class="btn btn-light float-right mr-4">新規従業員追加</button><%end%>
+        <%end%>
       </div>
     </div>
     <% if flash[:notice] %>
