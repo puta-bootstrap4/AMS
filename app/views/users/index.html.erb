@@ -4,7 +4,11 @@
       <tr>
         <td><%=user.username%></td>
         <td><%=link_to("/users/#{user.id}") do %><button type="button" class="btn btn-primary">スケジュール調整</button><%end%></td>
+        <% if !user.admin?%>
         <td><%=link_to("/users/#{user.id}/destroy",{method: "post"}) do %><button type="button" class="btn btn-danger">登録抹消</button><%end%></td>
+        <% else %>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

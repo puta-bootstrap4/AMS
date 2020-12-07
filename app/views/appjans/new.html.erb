@@ -1,0 +1,11 @@
+<div class="container text-center">
+  <%= form_tag("/appjans/#{@appjans}/#{@id}/create") do %>
+    <p>勤務希望開始時刻</p>
+    <input class="as" name="start_time" type="time"></br></br>
+    <p>勤務希望終了時刻</p>
+    <input class="as" name="end_time" type="time"></br></br>
+    #なぞ
+    <%=link_to("/appjans/:date/:id/holiday",{method: "post"}) do %><button type="button" class="btn btn-danger" name="holiday">休日希望</button><%end%></br></br>
+    <input class="btn btn-primary" type="submit" value="登録">
+  <% end %>
+</div>

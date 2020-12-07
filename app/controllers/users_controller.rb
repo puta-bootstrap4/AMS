@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @appjans = []
+    for i in 1..31 do
+      @appjans << Appjan.find_by(date: i,username: @user.username)
+    end
   end
 
   def login

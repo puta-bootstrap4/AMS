@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2020-12-06
+  start_time: 2020-12-06 08:14:06
+  end_time: 2020-12-06 08:14:06
+  holiday: false
+  user_id: 1
+
+two:
+  date: 2020-12-06
+  start_time: 2020-12-06 08:14:06
+  end_time: 2020-12-06 08:14:06
+  holiday: false
+  user_id: 1

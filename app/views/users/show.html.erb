@@ -14,5 +14,21 @@
     <td>金</td><td>土</td><td>日</td><td>月</td><td>火</td><td>水</td><td>木</td>
     <td>金</td><td>土</td><td>日</td>
   </tr>
+  <tr>
+    <td>申請</td>
+    <% date=0 %>
+    <% @appjans.each do |appjan|%>
+      <td>
+        <% date=date+1 %>
+          <% if appjan %>
+            <%=appjan.start_time%></br></br>
+            <%= appjan.end_time%></br></br>
+            <%=link_to("編集","/appjans/#{date}/#{@user.id}/edit")%>
+          <% else %>
+            <%=link_to("登録","/appjans/#{date}/#{@user.id}/new")%>
+          <% end %>
+      </td>
+    <% end %>
+  </tr>
   </table>
 </div>
