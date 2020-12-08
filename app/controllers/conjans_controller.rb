@@ -1,6 +1,6 @@
-class AppjansController < ApplicationController
-  before_action :authenticate_user,{only:[:new,:create,:edit,:update]}
-  before_action :ensure_correct_user,{only:[:new,:create,:edit,:update]}
+class ConjansController < ApplicationController
+  before_action :authenticate_user
+  before_action :authenticate_adminuser
   def new
     @user = User.find_by(id: params[:id])
     @date = params[:date]
@@ -8,8 +8,8 @@ class AppjansController < ApplicationController
 
   def create
     @user = User.find_by(id: params[:id])
-    @appjan = Appjan.new(date: params[:date],start_time: params[:start_time],end_time: params[:end_time],holiday: params[:holiday].to_i,username: @user.username)
-    if @appjan.save
+    @conjan = Conjan.new(date: params[:date],start_time: params[:start_time],end_time: params[:end_time],holiday: params[:holiday].to_i,username: @user.username)
+    if @conjan.save
       flash[:notice]="希望勤務時間帯を登録しました"
       redirect_to("/users/#{@user.id}")
     else
@@ -20,16 +20,16 @@ class AppjansController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-    @appjan = Appjan.find_by(date: params[:date],username: @user.username)
+    @conjan = Conjan.find_by(date: params[:date],username: @user.username)
   end
 
   def update
     @user = User.find_by(id: params[:id])
-    @appjan = Appjan.find_by(date: params[:date],username: @user.username)
-    @appjan.start_time = params[:start_time]
-    @appjan.end_time = params[:end_time]
-    @appjan.holiday = params[:holiday].to_i
-    if @appjan.save
+    @conjan = Conjan.find_by(date: params[:date],username: @user.username)
+    @conjan.start_time = params[:start_time]
+    @conjan.end_time = params[:end_time]
+    @conjan.holiday = params[:holiday].to_i
+    if @conjan.save
       flash[:notice]="勤務希望時間の編集が完了しました"
       redirect_to("/users/#{@user.id}")
     else

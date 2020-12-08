@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user,{only:[:index,:show,:destroy,:new,:create,:logout]}
+  before_action :authenticate_adminuser,{only:[:index,:destroy,:new,:create]}
+  before_action :ensure_correct_user,{only:[:show]}
   def index
     @users = User.all
   end
@@ -6,8 +9,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @appjans = []
+    @conjans = []
     for i in 1..31 do
       @appjans << Appjan.find_by(date: i,username: @user.username)
+      @conjans << Conjan.find_by(date: i,username: @user.username)
     end
   end
 
@@ -17,10 +22,13 @@ class UsersController < ApplicationController
       flash[:notice]="管理者としてログインしました"
       session[:user_id]=@user.id
       redirect_to("/users/index")
-    else
+    elsif @user
       flash[:notice]="ログインしました"
       session[:user_id]=@user.id
       redirect_to("/users/#{session[:user_id]}")
+    else
+      flash[:notice]="EmailまたはPASSWORDが間違っています"
+      render("home/top")
     end
   end
 
@@ -32,6 +40,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
+    @userappjan = Appjan.where(username: @user.username)
+    @userconjan = Conjan.where(username: @user.username)
+    @userappjan.destroy_all
+    @userconjan.destroy_all
     @user.destroy
     flash[:notice]="ユーザーを削除しました"
     redirect_to("/users/index")

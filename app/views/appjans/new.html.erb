@@ -1,11 +1,19 @@
 <div class="container text-center">
-  <%= form_tag("/appjans/#{@appjans}/#{@id}/create") do %>
+  <%= form_tag("/appjans/#{@date}/#{@user.id}/create") do %>
     <p>勤務希望開始時刻</p>
-    <input class="as" name="start_time" type="time"></br></br>
+    <input class="hopetimes" name="start_time" type="time"></br></br>
     <p>勤務希望終了時刻</p>
-    <input class="as" name="end_time" type="time"></br></br>
-    #なぞ
-    <%=link_to("/appjans/:date/:id/holiday",{method: "post"}) do %><button type="button" class="btn btn-danger" name="holiday">休日希望</button><%end%></br></br>
+    <input class="hopetimes" name="end_time" type="time"></br></br>
+    <input type="checkbox" name="holiday" id="check" value="1"> 休日希望</br></br></br></br>
     <input class="btn btn-primary" type="submit" value="登録">
+    <script>
+      $("#check").on("click", function(){
+        if($(this).prop("checked") == true){
+          $(".hopetimes").addClass("d-none");
+        }else{
+          $(".hopetimes").removeClass("d-none");
+        }
+      });
+    </script>
   <% end %>
 </div>

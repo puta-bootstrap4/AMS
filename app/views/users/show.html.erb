@@ -15,20 +15,66 @@
     <td>金</td><td>土</td><td>日</td>
   </tr>
   <tr>
-    <td>申請</td>
+    <td rowspan="2">申請</td>
     <% date=0 %>
     <% @appjans.each do |appjan|%>
       <td>
         <% date=date+1 %>
           <% if appjan %>
-            <%=appjan.start_time%></br></br>
-            <%= appjan.end_time%></br></br>
-            <%=link_to("編集","/appjans/#{date}/#{@user.id}/edit")%>
-          <% else %>
-            <%=link_to("登録","/appjans/#{date}/#{@user.id}/new")%>
+            <% if appjan.holiday == 1%>
+              <p>休日</p></br></br>
+            <% else %>
+              <%=appjan.start_time.strftime("%H:%M")%></br></br>
+              <%= appjan.end_time.strftime("%H:%M")%></br></br>
+            <% end %>
           <% end %>
       </td>
     <% end %>
+  </tr>
+  <tr>
+    <% date=0 %>
+    <% @appjans.each do |appjan| %>
+    <td>
+      <% date=date+1 %>
+      <% if appjan %>
+      <%=link_to("/appjans/#{date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
+    <% else %>
+      <%=link_to("/appjans/#{date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
+    <% end %>
+    </td>
+    <%end%>
+  </tr>
+  <tr>
+  <td rowspan="2">確定</td>
+  <% date=0 %>
+  <% @conjans.each do |conjan|%>
+    <td>
+      <% date=date+1 %>
+        <% if conjan %>
+          <% if conjan.holiday == 1%>
+            <p>休日</p></br></br>
+          <% else %>
+          <%= conjan.start_time.strftime("%H:%M")%></br></br>
+          <%= conjan.end_time.strftime("%H:%M")%></br></br>
+          <% end %>
+        <% end %>
+    </td>
+  <% end %>
+  </tr>
+  <tr>
+    <% date=0 %>
+    <% @conjans.each do |conjan| %>
+    <td>
+      <% date=date+1 %>
+      <% if @current_user.admin == true %>
+      <% if conjan %>
+        <%=link_to("/conjans/#{date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
+      <% else %>
+        <%=link_to("/conjans/#{date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
+      <% end %>
+      <% end %>
+    </td>
+    <%end%>
   </tr>
   </table>
 </div>

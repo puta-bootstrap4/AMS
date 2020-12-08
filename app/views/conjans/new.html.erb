@@ -1,0 +1,19 @@
+<div class="container text-center">
+  <%= form_tag("/conjans/#{@date}/#{@user.id}/create") do %>
+    <p>勤務確定開始時刻</p>
+    <input class="hopetimes" name="start_time" type="time"></br></br>
+    <p>勤務確定終了時刻</p>
+    <input class="hopetimes" name="end_time" type="time"></br></br>
+    <input type="checkbox" name="holiday" id="check" value="1"> 休日に設定</br></br></br></br>
+    <input class="btn btn-primary" type="submit" value="登録">
+    <script>
+      $("#check").on("click", function(){
+        if($(this).prop("checked") == true){
+          $(".hopetimes").addClass("d-none");
+        }else{
+          $(".hopetimes").removeClass("d-none");
+        }
+      });
+    </script>
+  <% end %>
+</div>
