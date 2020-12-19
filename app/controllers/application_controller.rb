@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 before_action :set_current_user
+
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
   end
@@ -20,9 +21,11 @@ before_action :set_current_user
 
   def ensure_correct_user
     @user = User.find_by(id: params[:id])
-    if (@current_user.username != @user.username) && (@current_user.admin == false)
+    if (@current_user.username  != @user.username) && (@current_user.admin == false)
       flash[:notice]="権限がありません"
       redirect_to("/")
+    else
+
     end
   end
 

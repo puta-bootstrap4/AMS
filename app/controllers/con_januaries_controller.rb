@@ -1,14 +1,15 @@
-class ConjansController < ApplicationController
+class ConJanuariesController < ApplicationController
   before_action :authenticate_user
   before_action :authenticate_adminuser
+
   def new
     @user = User.find_by(id: params[:id])
-    @date = params[:date]
+    @work_date = params[:work_date]
   end
 
   def create
     @user = User.find_by(id: params[:id])
-    @conjan = Conjan.new(date: params[:date],start_time: params[:start_time],end_time: params[:end_time],holiday: params[:holiday].to_i,username: @user.username)
+    @conjan = Con_january.new(work_date: params[:work_date],start_time: params[:start_time],end_time: params[:end_time],holiday: params[:holiday].to_i,username: @user.username)
     if @conjan.save
       flash[:notice]="希望勤務時間帯を登録しました"
       redirect_to("/users/#{@user.id}")
@@ -20,12 +21,12 @@ class ConjansController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-    @conjan = Conjan.find_by(date: params[:date],username: @user.username)
+    @conjan = Con_january.find_by(work_date: params[:work_date],username: @user.username)
   end
 
   def update
     @user = User.find_by(id: params[:id])
-    @conjan = Conjan.find_by(date: params[:date],username: @user.username)
+    @conjan = Con_january.find_by(work_date: params[:work_date],username: @user.username)
     @conjan.start_time = params[:start_time]
     @conjan.end_time = params[:end_time]
     @conjan.holiday = params[:holiday].to_i

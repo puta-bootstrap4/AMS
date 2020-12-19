@@ -16,10 +16,10 @@
   </tr>
   <tr>
     <td rowspan="2">申請</td>
-    <% date=0 %>
+    <% work_date=0 %>
     <% @appjans.each do |appjan|%>
       <td>
-        <% date=date+1 %>
+        <% work_date=work_date+1 %>
           <% if appjan %>
             <% if appjan.holiday == 1%>
               <p>休日</p></br></br>
@@ -32,24 +32,24 @@
     <% end %>
   </tr>
   <tr>
-    <% date=0 %>
+    <% work_date=0 %>
     <% @appjans.each do |appjan| %>
     <td>
-      <% date=date+1 %>
+      <% work_date=work_date+1 %>
       <% if appjan %>
-      <%=link_to("/appjans/#{date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
+      <%=link_to("/appjans/#{work_date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
     <% else %>
-      <%=link_to("/appjans/#{date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
+      <%=link_to("/appjans/#{work_date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
     <% end %>
     </td>
     <%end%>
   </tr>
   <tr>
   <td rowspan="2">確定</td>
-  <% date=0 %>
+  <% work_date=0 %>
   <% @conjans.each do |conjan|%>
     <td>
-      <% date=date+1 %>
+      <% work_date=work_date+1 %>
         <% if conjan %>
           <% if conjan.holiday == 1%>
             <p>休日</p></br></br>
@@ -62,15 +62,15 @@
   <% end %>
   </tr>
   <tr>
-    <% date=0 %>
+    <% work_date=0 %>
     <% @conjans.each do |conjan| %>
     <td>
-      <% date=date+1 %>
+      <% work_date=work_date+1 %>
       <% if @current_user.admin == true %>
       <% if conjan %>
-        <%=link_to("/conjans/#{date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
+        <%=link_to("/conjans/#{work_date}/#{@user.id}/edit") do %><button class="btn btn-success">編集</button><% end %>
       <% else %>
-        <%=link_to("/conjans/#{date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
+        <%=link_to("/conjans/#{work_date}/#{@user.id}/new") do%><button class="btn btn-primary">登録</button><% end %>
       <% end %>
       <% end %>
     </td>

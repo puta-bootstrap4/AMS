@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user,{only:[:index,:show,:destroy,:new,:create,:logout]}
-  before_action :authenticate_adminuser,{only:[:index,:destroy,:new,:create]}
-  before_action :ensure_correct_user,{only:[:show]}
+  before_action :authenticate_user,{only:[:index, :show, :destroy, :new, :create, :logout, :show]}
+  before_action :authenticate_adminuser,{only:[:index, :destroy, :new, :create]}
+
   def index
     @users = User.all
   end
@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     @appjans = []
     @conjans = []
     for i in 1..31 do
-      @appjans << Appjan.find_by(date: i,username: @user.username)
-      @conjans << Conjan.find_by(date: i,username: @user.username)
+      @appjans << App_january.find_by(work_date: i,username: @user.username)
+      @conjans << Con_january.find_by(work_date: i,username: @user.username)
     end
   end
 
