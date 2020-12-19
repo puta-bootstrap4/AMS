@@ -63,3 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'rubocop', require: false
+gem 'dotenv-rails'
+group :production, :staging do
+  gem 'unicorn','5.4.1'
+end
