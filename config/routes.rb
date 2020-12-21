@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post "appjans/:work_date/:id/create" => "app_januaries#create"
   post "appjans/:work_date/:id/update" => "app_januaries#update"
   post "conjans/:work_date/:id/update" => "con_januaries#update"
-  post "users/new" => "users#new"
   post "users/create" => "users#create"
   post "login" => "users#login"
   post "logout"=> "users#logout"

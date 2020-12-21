@@ -40,8 +40,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    @userappjan = Appjan.where(username: @user.username)
-    @userconjan = Conjan.where(username: @user.username)
+    @userappjan = App_january.where(username: @user.username)
+    @userconjan = Con_january.where(username: @user.username)
     @userappjan.destroy_all
     @userconjan.destroy_all
     @user.destroy
